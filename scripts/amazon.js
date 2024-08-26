@@ -66,10 +66,11 @@ addButtons.forEach((button) => {
     const productId = button.dataset.productId;
 
     let matchItem;
+    let cartQuantity = 0;
 
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchItem = item;
+    cart.forEach((object) => {
+      if (productId === object.productId) {
+        matchItem = object;
       }
     });
 
@@ -82,6 +83,11 @@ addButtons.forEach((button) => {
       });
     }
 
-    console.log(cart);
+    cart.forEach((object) => {
+      cartQuantity += object.quantity;
+    });
+
+    const cartQty = document.querySelector('.js-cart-quantity');
+    cartQty.innerHTML = cartQuantity;
   });
 });
