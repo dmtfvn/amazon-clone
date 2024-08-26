@@ -1,5 +1,5 @@
-import {products} from './data/products.js';
-import {cart, addToCart} from './data/cart.js';
+import { products } from './data/products.js';
+import { cart, addToCart } from './data/cart.js';
 
 let productsHTML = '';
 
@@ -7,8 +7,7 @@ products.forEach((product) => {
   productsHTML += `
     <div class="product-container">
       <div class="product-image-container">
-        <img class="product-image"
-          src="${product.image}">
+        <img class="product-image" src="${product.image}">
       </div>
 
       <div class="product-name limit-text-to-2-lines">
