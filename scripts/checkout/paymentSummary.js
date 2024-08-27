@@ -16,6 +16,9 @@ export function renderPaymentSummary() {
     shippingPriceCents += deliveryOption.priceCents;
 
     productsCount += cartObj.quantity;
+
+    const checkoutItems = document.querySelector('.js-return-to-home-link');
+    checkoutItems.innerHTML = `${productsCount} items`;
   });
 
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
