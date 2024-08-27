@@ -11,11 +11,9 @@ export function renderOrderSummary () {
 
   cart.forEach((cartObj) => {
     const productId = cartObj.productId;
-
     const matchPtoduct = getProduct(productId);
 
     const deliveryOptionId = cartObj.deliveryOptionId;
-
     const deliveryOption = getDeliveryOption(deliveryOptionId);
 
     const curDate = dayjs();
