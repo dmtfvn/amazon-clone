@@ -28,7 +28,8 @@ products.forEach((product) => {
       </div>
 
       <div class="product-quantity-container">
-        <select>
+        <select class="js-select-quantity"
+        data-select-quantity="${product.id}">
           <option selected value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -69,14 +70,36 @@ function renderCurCartCount() {
     cartQuantity += cartObj.quantity;
   });
 
-  cartQty.innerHTML = cartQuantity;
+  cartQty.textContent = cartQuantity;
 }
+
+let dropdownId;
+let quantity;
+
+const selectOption = document.querySelectorAll('.js-select-quantity');
+selectOption.forEach((selector) => {
+  selector.addEventListener('change', (e) => {
+    dropdownId = selector.dataset.selectQuantity;
+    quantity = Number(e.target.value);
+  });
+})
 
 const addButtons = document.querySelectorAll('.js-add-to-cart');
 addButtons.forEach((button) => {
   button.addEventListener('click', () => {
     const productId = button.dataset.productId;
-    addToCart(productId);
+
+    if (productId === dropdownId) {
+      addToCart(productId, quantity);
+    } else {
+      quantity = 1;
+      addToCart(productId, quantity);
+
+      selectOption.forEach((option) => {
+        option.value = '1';
+      });
+    }
+
     renderCurCartCount();
   });
 });
@@ -93,4 +116,4 @@ function getFromLocalStorage() {
   return cartCount;
 }
 
-cartQty.innerHTML = getFromLocalStorage();
+cartQty.textContent = getFromLocalStorage();

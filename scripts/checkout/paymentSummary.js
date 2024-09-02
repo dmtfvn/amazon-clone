@@ -19,7 +19,7 @@ export function renderPaymentSummary() {
   });
 
   const checkoutItems = document.querySelector('.js-return-to-home-link');
-  checkoutItems.innerHTML = `${productsCount} items`;
+  checkoutItems.textContent = `${productsCount} items`;
 
   const totalBeforeTaxCents = productPriceCents + shippingPriceCents;
   const taxCents = totalBeforeTaxCents * 0.1;
